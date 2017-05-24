@@ -30,7 +30,6 @@
         android:layout_height="wrap_content"
         android:onClick="@{() -> viewModel.onSelectedItem(category, status, type, position)}"
         android:orientation="vertical"
-        android:padding="@dimen/dp_20"
         android:paddingLeft="@dimen/dp_20"
         android:paddingRight="@dimen/dp_20"
         >
