@@ -1,5 +1,6 @@
 package com.framgia.fdms.screen.listDevice;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -31,7 +32,7 @@ public class ListDeviceFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = new ListDeviceViewModel(getActivity());
+        mViewModel = new ListDeviceViewModel(getActivity(), this);
 
         ListDeviceContract.Presenter presenter = new ListDevicePresenter(mViewModel,
                 new DeviceRepository(new DeviceRemoteDataSource(FDMSServiceClient.getInstance())),
@@ -51,6 +52,12 @@ public class ListDeviceFragment extends Fragment {
                 DataBindingUtil.inflate(inflater, R.layout.fragment_list_device, container, false);
         binding.setViewModel((ListDeviceViewModel) mViewModel);
         return binding.getRoot();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mViewModel.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

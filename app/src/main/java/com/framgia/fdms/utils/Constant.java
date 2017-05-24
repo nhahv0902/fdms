@@ -13,10 +13,10 @@ public class Constant {
     public static final int ALL_REQUEST_STATUS_ID = -1;
     public static final int ALL_RELATIVE_ID = -1;
     public static final String PERCENT = " %";
-    public static final String NOT_SEARCH =  "NOT_SEARCH";
-    public static final int USING =  1;
-    public static final int AVAIABLE =  2;
-    public static final int BROKEN =  3;
+    public static final String NOT_SEARCH = "NOT_SEARCH";
+    public static final int USING = 1;
+    public static final int AVAIABLE = 2;
+    public static final int BROKEN = 3;
 
     private Constant() {
         // No-op
@@ -43,11 +43,24 @@ public class Constant {
         public static final String REQUEST_FOR_USER_ID = "request[for_user_id]";
         public static final String REQUEST_ASSIGNEE_ID = "request[assignee_id]";
     }
-    public class DeviceStatus{
+
+    public class DeviceStatus {
         public static final String CANCELLED = "cancelled";
         public static final String WAITING_APPROVE = "waiting approve";
         public static final String APPROVED = "approved";
         public static final String WAITING_DONE = "waiting done";
         public static final String DONE = "done";
+    }
+
+    public static final class BundleConstant {
+        public static final String BUNDLE_CATEGORIES = "BUNDLE_CATEGORIES";
+        public static final String BUNDLE_STATUSES = "BUNDLE_STATUSES";
+        public static final String BUNDLE_TYPE = "BUNDLE_TYPE";
+        public static final String BUNDLE_CATEGORY = "BUNDLE_CATEGORY";
+        public static final String BUNDLE_STATUE = "BUNDLE_STATUE";
+    }
+
+    public static final class RequestConstant {
+        public static final int REQUEST_SELECTION = 1;
     }
 }

@@ -48,8 +48,8 @@ public class CreateDeviceViewModel extends BaseObservable
         mActivity = activity;
         mRequest = new RegisterDeviceRequest();
 
-        mAdapterCategory = new ArrayAdapter<Category>(mContext, R.layout.select_dialog_item);
-        mAdapterStatus = new ArrayAdapter<Status>(mContext, R.layout.select_dialog_item);
+        mAdapterCategory = new ArrayAdapter<Category>(mContext, R.layout.item_status_selection);
+        mAdapterStatus = new ArrayAdapter<Status>(mContext, R.layout.item_status_selection);
     }
 
     @Override

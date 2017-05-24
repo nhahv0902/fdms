@@ -43,8 +43,8 @@ public class RequestCreationViewModel extends BaseObservable
         mActivity = activity;
         mContext = activity.getApplicationContext();
         mRequest = new RequestCreatorRequest();
-        mAdapterAssignee = new ArrayAdapter<Status>(mActivity, R.layout.select_dialog_item);
-        mAdapterRelative = new ArrayAdapter<Status>(mActivity, R.layout.select_dialog_item);
+        mAdapterAssignee = new ArrayAdapter<Status>(mActivity, R.layout.item_status_selection);
+        mAdapterRelative = new ArrayAdapter<Status>(mActivity, R.layout.item_status_selection);
         mAdapterCategory = new ArrayAdapter<Category>(mActivity,
                 R.layout.support_simple_spinner_dropdown_item);
         mAdapter = new RequestCreationAdapter(mContext, this);

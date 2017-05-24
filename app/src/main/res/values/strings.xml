@@ -107,4 +107,6 @@
     <string name="action_return_device">Return device</string>
     <string name="text_assign_to">Assign to</string>
     <string name="text_request_for">Request for</string>
+    <string formatted="false" name="text_name_status_selection">%d.    %s</string>
+    <string name="hint_search">Search</string>
 </resources>

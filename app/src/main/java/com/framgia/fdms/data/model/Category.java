@@ -1,5 +1,7 @@
 package com.framgia.fdms.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -7,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by levutantuan on 4/10/17.
  */
 
-public class Category {
+public class Category implements Parcelable {
     @Expose
     @SerializedName("id")
     private int mId;
@@ -19,6 +21,23 @@ public class Category {
         mId = id;
         mName = name;
     }
+
+    protected Category(Parcel in) {
+        mId = in.readInt();
+        mName = in.readString();
+    }
+
+    public static final Creator<Category> CREATOR = new Creator<Category>() {
+        @Override
+        public Category createFromParcel(Parcel in) {
+            return new Category(in);
+        }
+
+        @Override
+        public Category[] newArray(int size) {
+            return new Category[size];
+        }
+    };
 
     public int getId() {
         return mId;
@@ -38,6 +57,17 @@ public class Category {
 
     @Override
     public String toString() {
-        return  + mId + ". " + mName;
+        return +mId + ". " + mName;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(mId);
+        dest.writeString(mName);
     }
 }

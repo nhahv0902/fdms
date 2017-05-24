@@ -35,4 +35,5 @@
     <color name="color_seashell">#F1F1F1</color>
     <color name="color_blued">#1976D2</color>
     <color name="color_black_transprarent">#B2000000</color>
+    <color name="color_brown_100">#cecaca</color>
 </resources>

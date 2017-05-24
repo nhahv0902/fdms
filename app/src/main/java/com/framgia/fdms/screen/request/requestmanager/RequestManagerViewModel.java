@@ -2,7 +2,6 @@ package com.framgia.fdms.screen.request.requestmanager;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
@@ -19,7 +18,6 @@ import com.framgia.fdms.data.model.Request;
 import com.framgia.fdms.data.model.Status;
 import com.framgia.fdms.screen.request.OnMenuClickListenner;
 import com.framgia.fdms.screen.request.userrequest.UserRequestAdapter;
-import com.framgia.fdms.screen.requestcreation.RequestCreationActivity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,8 +43,8 @@ public class RequestManagerViewModel extends BaseFragmentModel
         mContext = activity.getApplicationContext();
         mActivity = activity;
         mAdapter = new UserRequestAdapter(mContext, new ArrayList<Request>(), this);
-        mAdapterStatus = new ArrayAdapter<>(mContext, R.layout.select_dialog_item);
-        mAdapterRealtive = new ArrayAdapter<>(mContext, R.layout.select_dialog_item);
+        mAdapterStatus = new ArrayAdapter<>(mContext, R.layout.item_status_selection);
+        mAdapterRealtive = new ArrayAdapter<>(mContext, R.layout.item_status_selection);
         setStatus(new Status(OUT_OF_INDEX, mContext.getString(R.string.title_request_status)));
         setRelative(new Status(OUT_OF_INDEX, mContext.getString(R.string.title_request_relative)));
     }

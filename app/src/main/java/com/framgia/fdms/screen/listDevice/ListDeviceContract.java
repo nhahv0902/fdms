@@ -1,5 +1,6 @@
 package com.framgia.fdms.screen.listDevice;
 
+import android.content.Intent;
 import com.framgia.fdms.BasePresenter;
 import com.framgia.fdms.BaseViewModel;
 import com.framgia.fdms.data.model.Category;
@@ -42,6 +43,8 @@ interface ListDeviceContract {
         void onReset();
 
         void getData();
+
+        void onActivityResult(int requestCode, int resultCode, Intent data);
     }
 
     /**
