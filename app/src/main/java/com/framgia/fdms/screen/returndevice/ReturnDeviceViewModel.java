@@ -8,7 +8,9 @@ import android.databinding.ObservableList;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
+import com.framgia.fdms.R;
 import com.framgia.fdms.data.model.Device;
+import com.framgia.fdms.data.model.DeviceReturn;
 import com.framgia.fdms.data.model.Status;
 import com.framgia.fdms.screen.scanner.ScannerActivity;
 import com.framgia.fdms.screen.selection.StatusSelectionActivity;
@@ -16,6 +18,8 @@ import com.framgia.fdms.screen.selection.StatusSelectionType;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.framgia.fdms.screen.scanner.ScannerViewModel.ScannerType.SCANNER_DEVICE;
+import static com.framgia.fdms.utils.Constant.BundleConstant.BUNDLE_CONTENT;
 import static com.framgia.fdms.utils.Constant.BundleConstant.BUNDLE_STATUE;
 import static com.framgia.fdms.utils.Constant.RequestConstant.REQUEST_SCANNER;
 import static com.framgia.fdms.utils.Constant.RequestConstant.REQUEST_SELECTION;
@@ -28,11 +32,13 @@ public class ReturnDeviceViewModel implements ReturnDeviceContract.ViewModel {
 
     private AppCompatActivity mActivity;
     private ReturnDeviceContract.Presenter mPresenter;
-    private ObservableList<Device> mDevices = new ObservableArrayList<>();
+    private ObservableList<DeviceReturn> mDevices = new ObservableArrayList<>();
     private ObservableField<DeviceReturnAdapter> mAdapter = new ObservableField<>();
 
     private List<Status> mAssigners = new ArrayList<>();
     private ObservableField<Status> mNameUserReturn = new ObservableField<>();
+    private boolean mIsChecked;
+    private String mContextQrCode;
 
     public ReturnDeviceViewModel(AppCompatActivity activity) {
         mActivity = activity;
@@ -56,10 +62,7 @@ public class ReturnDeviceViewModel implements ReturnDeviceContract.ViewModel {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode != REQUEST_SELECTION
-                || data == null
-                || data.getExtras() == null
-                || resultCode != Activity.RESULT_OK) {
+        if (data == null || data.getExtras() == null || resultCode != Activity.RESULT_OK) {
             return;
         }
         Bundle bundle = data.getExtras();
@@ -73,7 +76,9 @@ public class ReturnDeviceViewModel implements ReturnDeviceContract.ViewModel {
                 }
                 break;
             case REQUEST_SCANNER:
-                // TODO: 6/2/2017 handle when qrcode
+                mContextQrCode = bundle.getString(BUNDLE_CONTENT);
+                mIsChecked = true;
+                mPresenter.getDevicesOfBorrower();
                 break;
             default:
                 break;
@@ -81,7 +86,7 @@ public class ReturnDeviceViewModel implements ReturnDeviceContract.ViewModel {
     }
 
     @Override
-    public void onCheckedChanged(boolean checked, Device device, int position) {
+    public void onCheckedChanged(boolean checked, DeviceReturn device, int position) {
         // TODO: 5/22/2017 work when checkbox item of device return
     }
 
@@ -95,7 +100,8 @@ public class ReturnDeviceViewModel implements ReturnDeviceContract.ViewModel {
     @Override
     public void onStartScannerDevice() {
         mActivity.startActivityForResult(
-                ScannerActivity.newIntent(mActivity.getApplicationContext()), REQUEST_SCANNER);
+                ScannerActivity.newIntent(mActivity.getApplicationContext(), SCANNER_DEVICE),
+                REQUEST_SCANNER);
     }
 
     @Override
@@ -139,8 +145,28 @@ public class ReturnDeviceViewModel implements ReturnDeviceContract.ViewModel {
     @Override
     public void onDeviceLoaded(List<Device> devices) {
         mDevices.clear();
-        mDevices.addAll(devices);
+        addAll(mDevices, devices);
         mAdapter.get().update(mDevices);
+        if (mIsChecked) {
+            for (DeviceReturn item : mDevices) {
+                if (item.getDevice().getDeviceCode().equals(mContextQrCode)) {
+                    item.setChecked(true);
+                    mDevices.clear();
+                    mDevices.add(item);
+                    mAdapter.get().update(mDevices);
+                    return;
+                }
+            }
+            Toast.makeText(mActivity, R.string.msg_not_device_in_device_brorows, Toast.LENGTH_SHORT)
+                    .show();
+        }
+    }
+
+    private void addAll(List<DeviceReturn> devicesReturn, List<Device> devices) {
+        devicesReturn.clear();
+        for (Device item : devices) {
+            devicesReturn.add(new DeviceReturn(item));
+        }
     }
 
     public AppCompatActivity getActivity() {
@@ -155,7 +181,7 @@ public class ReturnDeviceViewModel implements ReturnDeviceContract.ViewModel {
         return mNameUserReturn;
     }
 
-    public ObservableList<Device> getDevices() {
+    public ObservableList<DeviceReturn> getDevices() {
         return mDevices;
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import com.framgia.fdms.BasePresenter;
 import com.framgia.fdms.BaseViewModel;
 import com.framgia.fdms.data.model.Device;
+import com.framgia.fdms.data.model.DeviceReturn;
 import com.framgia.fdms.data.model.Status;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface ReturnDeviceContract {
      * View.
      */
     interface ViewModel extends BaseViewModel<Presenter> {
-        void onCheckedChanged(boolean checked, Device device, int position);
+        void onCheckedChanged(boolean checked, DeviceReturn device, int position);
 
         void onSelectedUserReturn();
 

@@ -17,7 +17,7 @@ import static com.framgia.fdms.utils.Constant.USING;
 /**
  * Created by Age on 4/1/2017.
  */
-public class Device extends BaseObservable implements Parcelable {
+public class Device extends BaseObservable implements Parcelable, Cloneable {
     @Expose
     @SerializedName("id")
     private int mId;
@@ -303,5 +303,10 @@ public class Device extends BaseObservable implements Parcelable {
         dest.writeString(mDeviceCategoryName);
         dest.writeString(mSerialNumber);
         dest.writeString(mModelNumber);
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

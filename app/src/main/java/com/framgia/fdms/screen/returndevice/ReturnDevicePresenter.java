@@ -32,7 +32,6 @@ public final class ReturnDevicePresenter implements ReturnDeviceContract.Present
         mDeviceReturnRepository = deviceReturnRepository;
         mSubscription = new CompositeSubscription();
         getListAssign();
-        getDevicesOfBorrower();
     }
 
     @Override

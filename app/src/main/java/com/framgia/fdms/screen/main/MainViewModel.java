@@ -13,6 +13,7 @@ import com.framgia.fdms.screen.scanner.ScannerActivity;
 import static com.framgia.fdms.screen.main.MainViewModel.Tab.TAB_DASH_BOARD;
 import static com.framgia.fdms.screen.main.MainViewModel.Tab.TAB_DEVICE_MANAGER;
 import static com.framgia.fdms.screen.main.MainViewModel.Tab.TAB_REQUEST_MANAGER;
+import static com.framgia.fdms.screen.scanner.ScannerViewModel.ScannerType.SCANNER_IN_MAIN;
 
 /**
  * Exposes the data to be used in the Newmain screen.
@@ -63,7 +64,7 @@ public class MainViewModel extends BaseObservable implements MainContract.ViewMo
     }
 
     public void onStartScannerQrCode() {
-        mActivity.startActivity(ScannerActivity.newIntent(mActivity));
+        mActivity.startActivity(ScannerActivity.newIntent(mActivity, SCANNER_IN_MAIN));
     }
 
     @Override

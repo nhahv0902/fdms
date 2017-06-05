@@ -148,4 +148,5 @@
     <string name="action_user_return_device">User return device</string>
     <string name="title_percent">\t%\t</string>
     <string name="text_number_notification_more">99+</string>
+    <string name="msg_not_device_in_device_brorows">Not found device in list device brorows</string>
 </resources>

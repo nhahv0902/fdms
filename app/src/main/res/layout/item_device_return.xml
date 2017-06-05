@@ -5,7 +5,7 @@
     <data>
         <variable
             name="device"
-            type="com.framgia.fdms.data.model.Device"
+            type="com.framgia.fdms.data.model.DeviceReturn"
             />
         <variable
             name="position"
@@ -32,7 +32,7 @@
                 android:layout_width="@dimen/dp_86"
                 android:layout_height="@dimen/dp_86"
                 android:layout_gravity="center_vertical"
-                app:imageUrl="@{device.picture.url}"
+                app:imageUrl="@{device.device.picture.url}"
                 />
 
             <LinearLayout
@@ -46,25 +46,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="@{device.deviceCode}"
+                    android:text="@{device.device.deviceCode}"
                     />
                 <android.support.v7.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="@{device.productionName}"
-                    />
-                <android.support.v7.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="@{device.deviceCategoryName}"
+                    android:text="@{device.device.productionName}"
                     />
             </LinearLayout>
             <android.support.v7.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:checked="@{device.checked}"
                 android:onCheckedChanged="@{(switch, checked) -> viewModel.onCheckedChanged(checked, device, position)}"
                 app:buttonTint="@color/state_check_box"
                 />

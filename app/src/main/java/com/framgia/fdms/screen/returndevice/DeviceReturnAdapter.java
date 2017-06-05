@@ -3,7 +3,7 @@ package com.framgia.fdms.screen.returndevice;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import com.framgia.fdms.data.model.Device;
+import com.framgia.fdms.data.model.DeviceReturn;
 import com.framgia.fdms.databinding.ItemDeviceReturnBinding;
 import java.util.List;
 
@@ -16,15 +16,15 @@ public class DeviceReturnAdapter
         extends RecyclerView.Adapter<DeviceReturnAdapter.DeviceReturnHolder> {
 
     private final ReturnDeviceContract.ViewModel mViewModel;
-    private List<Device> mDevices;
+    private List<DeviceReturn> mDevices;
     private LayoutInflater mInflater;
 
-    public DeviceReturnAdapter(ReturnDeviceViewModel viewModel, List<Device> devices) {
+    public DeviceReturnAdapter(ReturnDeviceViewModel viewModel, List<DeviceReturn> devices) {
         mDevices = devices;
         mViewModel = viewModel;
     }
 
-    public void update(List<Device> devices) {
+    public void update(List<DeviceReturn> devices) {
         mDevices = devices;
         notifyDataSetChanged();
     }
@@ -39,7 +39,7 @@ public class DeviceReturnAdapter
 
     @Override
     public void onBindViewHolder(DeviceReturnHolder holder, int position) {
-        Device device = mDevices.get(position);
+        DeviceReturn device = mDevices.get(position);
         if (device != null) holder.bind(device, position);
     }
 
@@ -57,7 +57,7 @@ public class DeviceReturnAdapter
             mBinding = binding;
         }
 
-        public void bind(Device device, int position) {
+        public void bind(DeviceReturn device, int position) {
             mBinding.setDevice(device);
             mBinding.setPosition(position);
             mBinding.executePendingBindings();
