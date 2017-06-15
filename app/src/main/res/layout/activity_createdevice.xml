@@ -94,9 +94,9 @@
                         <include
                             layout="@layout/text_input"
                             bind:image="@{@drawable/ic_list_24dp}"
+                            bind:onClick="@{() -> viewModel.onChooseStatus()}"
                             bind:text="@{viewModel.status.name}"
                             bind:title="@{@string/title_device_status}"
-                            bind:type="@{viewModel.deviceType}"
                             />
 
                         <include
@@ -106,7 +106,6 @@
                             bind:onClick="@{() -> viewModel.onPickDateTimeClick()}"
                             bind:text="@{viewModel.boughtDate}"
                             bind:title="@{@string/title_bought_date}"
-                            bind:type="@{viewModel.deviceType}"
                             />
 
                         <include
@@ -116,7 +115,6 @@
                             bind:onClick="@{() -> viewModel.onChooseCategory()}"
                             bind:text="@{viewModel.category.name}"
                             bind:title="@{@string/title_device_category}"
-                            bind:type="@{viewModel.deviceType}"
                             />
 
                         <include
@@ -125,7 +123,6 @@
                             bind:onClick="@{() -> viewModel.onChooseBranch()}"
                             bind:text="@{viewModel.branch.name}"
                             bind:title="@{@string/title_branch}"
-                            bind:type="@{viewModel.deviceType}"
                             />
 
                         <include
@@ -133,7 +130,6 @@
                             bind:image="@{@drawable/ic_code_24dp}"
                             bind:text="@{viewModel.device.deviceCode}"
                             bind:title="@{@string/title_code}"
-                            bind:type="@{viewModel.deviceType}"
                             />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -288,8 +284,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_weight="1"
-                                android:orientation="horizontal"
                                 android:onClick="@{() -> viewModel.onPrintClick()}"
+                                android:orientation="horizontal"
                                 android:padding="@dimen/dp_5"
                                 android:paddingTop="@dimen/dp_15"
                                 >
