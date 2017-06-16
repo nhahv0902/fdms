@@ -115,6 +115,7 @@ public class CreateDeviceViewModel extends BaseObservable
 
     @Override
     public void onPickDateTimeClick() {
+        if (mDeviceType == DeviceStatusType.EDIT) return;
         if (mCalendar == null) mCalendar = Calendar.getInstance();
         DatePickerDialog datePicker =
                 DatePickerDialog.newInstance(this, mCalendar.get(Calendar.YEAR),
@@ -133,7 +134,7 @@ public class CreateDeviceViewModel extends BaseObservable
     }
 
     public void onChooseCategory() {
-        if (mCategories == null) return;
+        if (mCategories == null || mDeviceType == DeviceStatusType.EDIT) return;
         mActivity.startActivityForResult(
                 StatusSelectionActivity.getInstance(mContext, mCategories, mStatuses,
                         StatusSelectionType.CATEGORY), REQUEST_CATEGORY);
@@ -147,7 +148,7 @@ public class CreateDeviceViewModel extends BaseObservable
     }
 
     public void onChooseBranch() {
-        if (mBranches == null) return;
+        if (mBranches == null || mDeviceType == DeviceStatusType.EDIT) return;
         mActivity.startActivityForResult(
                 StatusSelectionActivity.getInstance(mContext, mCategories, mBranches,
                         StatusSelectionType.STATUS), REQUEST_BRANCH);
